@@ -89,6 +89,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Video-Games`
+  String get games {
+    return Intl.message(
+      'Video-Games',
+      name: 'games',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Test your knowledge on blockbuster movies.`
+  String get descriptin_movie {
+    return Intl.message(
+      'Test your knowledge on blockbuster movies.',
+      name: 'descriptin_movie',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you a sports fan? Prove it by answering these questions!`
+  String get description_sports {
+    return Intl.message(
+      'Are you a sports fan? Prove it by answering these questions!',
+      name: 'description_sports',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Think you're a gaming expert? Find out her!`
+  String get description_games {
+    return Intl.message(
+      'Think you\'re a gaming expert? Find out her!',
+      name: 'description_games',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -3,5 +3,8 @@
   "welcomeMessage": "Bem-vindo ao Quiz-GPT",
   "answers": "{number} respostas corretas!",
   "movies": "Filmes",
-  "sports": "Esportes"
+  "sports": "Esportes",
+  "descriptin_movie": "Teste seus conhecimentos sobre os grandes sucessos do cinema!",
+  "description_sports": "Você é um fã de esportes? Prove respondendo a estas perguntas!",
+  "description_games": "Será que você é um expert em jogos eletrônicos? Descubra aqui!"
 }

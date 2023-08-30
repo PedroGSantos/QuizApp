@@ -96,11 +96,11 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 20.0, top: 8.0),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0, top: 8.0),
                         child: Text(
-                          'Lorem Ipsum is simply dummy text...',
-                          style: TextStyle(
+                          localizations.descriptin_movie,
+                          style: const TextStyle(
                             fontSize: 24,
                             color: Color(0xFFFFFFFF),
                           ),
@@ -139,11 +139,54 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 20.0, top: 8.0),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0, top: 8.0),
                         child: Text(
-                          'Lorem Ipsum is simply dummy text...',
-                          style: TextStyle(
+                          localizations.description_sports,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            color: Color(0xFFFFFFFF),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Question()),
+                  );
+                },
+                child: Container(
+                  width: 250,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFF6F00),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0, top: 16.0),
+                        child: Text(
+                          localizations.games,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFFFFFFFF),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0, top: 8.0),
+                        child: Text(
+                          localizations.description_games,
+                          style: const TextStyle(
                             fontSize: 24,
                             color: Color(0xFFFFFFFF),
                           ),
