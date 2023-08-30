@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:quiz_app/network.dart';
 import 'package:quiz_app/pages/question.dart'; // Importe o pacote do carrossel
 
 class Home extends StatelessWidget {
@@ -44,12 +45,17 @@ class Home extends StatelessWidget {
               // Itens do carrossel
               // Item 1
               GestureDetector(
-                onTap: () {
+                onTap: () async {
+                  try {
+                    QuestionGenerated question = await fetchQuestion();
+                    print("Pergunta: ${question.questionText}");
+                  } catch (e) {
+                    print("Erro ao buscar pergunta: $e");
+                  }
+
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            Question()),
+                    MaterialPageRoute(builder: (context) => Question()),
                   );
                 },
                 child: Container(
@@ -92,9 +98,7 @@ class Home extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            Question()), 
+                    MaterialPageRoute(builder: (context) => Question()),
                   );
                 },
                 child: Container(
