@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "answers": m0,
+        "movies": MessageLookupByLibrary.simpleMessage("Movies"),
+        "sports": MessageLookupByLibrary.simpleMessage("Sports"),
         "welcomeMessage":
             MessageLookupByLibrary.simpleMessage("Welcome to Quiz-GPT")
       };

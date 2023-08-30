@@ -69,6 +69,26 @@ class S {
       args: [number],
     );
   }
+
+  /// `Movies`
+  String get movies {
+    return Intl.message(
+      'Movies',
+      name: 'movies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sports`
+  String get sports {
+    return Intl.message(
+      'Sports',
+      name: 'sports',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

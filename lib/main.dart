@@ -5,7 +5,6 @@ import './pages/question.dart';
 import './pages/home.dart';
 
 Future<void> main() async {
-  await initializeMessages('pt');
   runApp(const MyApp());
 }
 
