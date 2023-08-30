@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Question extends StatefulWidget {
+  const Question({super.key});
+
   @override
   _QuestionState createState() => _QuestionState();
 }
@@ -13,7 +15,8 @@ class _QuestionState extends State<Question> {
   bool _answerCorrect = false;
   bool _answerIncorrect = false;
 
-  Color _componentColor = Color(0xFF4BD11B); // Defina a cor desejada
+  final Color _componentColor =
+      const Color(0xFF4BD11B); // Defina a cor desejada
 
   void _handleCheckbox1(bool? value) {
     setState(() {
@@ -63,9 +66,13 @@ class _QuestionState extends State<Question> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
-        backgroundColor: _answerCorrect || _answerIncorrect ? _answerCorrect? Color(0xFF4BD11B) : Color(0xFFD71616) : Color(0xFFFF6F00),
-        iconTheme: IconThemeData(color: Colors.white),
+        title: const Text(''),
+        backgroundColor: _answerCorrect || _answerIncorrect
+            ? _answerCorrect
+                ? const Color(0xFF4BD11B)
+                : const Color(0xFFD71616)
+            : const Color(0xFFFF6F00),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -75,9 +82,13 @@ class _QuestionState extends State<Question> {
             width: 1000,
             height: 220,
             decoration: BoxDecoration(
-              color: _answerCorrect || _answerIncorrect ? _answerCorrect? Color(0xFF4BD11B) : Color(0xFFD71616) : Color(0xFFFF6F00),
+              color: _answerCorrect || _answerIncorrect
+                  ? _answerCorrect
+                      ? const Color(0xFF4BD11B)
+                      : const Color(0xFFD71616)
+                  : const Color(0xFFFF6F00),
             ),
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -102,95 +113,98 @@ class _QuestionState extends State<Question> {
               ],
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
-            padding: EdgeInsets.only(left: 20.0),
+            padding: const EdgeInsets.only(left: 20.0),
             child: CheckboxListTile(
-              title: Text('Ginástica Artística'),
+              title: const Text('Ginástica Artística'),
               value: _checkbox1,
-              onChanged: _answerCorrect || _answerIncorrect ? null : _handleCheckbox1,
-              activeColor: Color(0xFFFF6F00),
+              onChanged:
+                  _answerCorrect || _answerIncorrect ? null : _handleCheckbox1,
+              activeColor: const Color(0xFFFF6F00),
               controlAffinity: ListTileControlAffinity.leading,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 20.0),
+            padding: const EdgeInsets.only(left: 20.0),
             child: CheckboxListTile(
-              title: Text('Natação'),
+              title: const Text('Natação'),
               value: _checkbox2,
-              onChanged: _answerCorrect || _answerIncorrect ? null :  _handleCheckbox2,
-              activeColor: Color(0xFFFF6F00),
+              onChanged:
+                  _answerCorrect || _answerIncorrect ? null : _handleCheckbox2,
+              activeColor: const Color(0xFFFF6F00),
               controlAffinity: ListTileControlAffinity.leading,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 20.0),
+            padding: const EdgeInsets.only(left: 20.0),
             child: CheckboxListTile(
-              title: Text('Atletismo (Corrida e Campo)'),
+              title: const Text('Atletismo (Corrida e Campo)'),
               value: _checkbox3,
-              onChanged: _answerCorrect || _answerIncorrect ? null : _handleCheckbox3,
-              activeColor: Color(0xFFFF6F00),
+              onChanged:
+                  _answerCorrect || _answerIncorrect ? null : _handleCheckbox3,
+              activeColor: const Color(0xFFFF6F00),
               controlAffinity: ListTileControlAffinity.leading,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 20.0),
+            padding: const EdgeInsets.only(left: 20.0),
             child: CheckboxListTile(
-              title: Text('Nado Sincronizado'),
+              title: const Text('Nado Sincronizado'),
               value: _checkbox4,
-              onChanged: _answerCorrect || _answerIncorrect ? null : _handleCheckbox4,
-              activeColor: Color(0xFFFF6F00),
+              onChanged:
+                  _answerCorrect || _answerIncorrect ? null : _handleCheckbox4,
+              activeColor: const Color(0xFFFF6F00),
               controlAffinity: ListTileControlAffinity.leading,
             ),
           ),
-          SizedBox(height: 100),
-          _answerCorrect || _answerIncorrect 
-              ? _answerCorrect? 
-              Align(
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment
-                        .center, // Alinha horizontalmente ao centro
-                    children: [
-                      Icon(
-                        Icons.check,
-                        color: Color(0xFF4BD11B),
-                        size: 36,
-                      ), // Ícone de check
-                      SizedBox(width: 10), // Espaço entre o ícone e o texto
-                      Text(
-                        'CORRETO!',
-                        style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF4BD11B)),
+          const SizedBox(height: 100),
+          _answerCorrect || _answerIncorrect
+              ? _answerCorrect
+                  ? const Align(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment
+                            .center, // Alinha horizontalmente ao centro
+                        children: [
+                          Icon(
+                            Icons.check,
+                            color: Color(0xFF4BD11B),
+                            size: 36,
+                          ), // Ícone de check
+                          SizedBox(width: 10), // Espaço entre o ícone e o texto
+                          Text(
+                            'CORRETO!',
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF4BD11B)),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                )
-                :
-                Align(
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment
-                        .center, // Alinha horizontalmente ao centro
-                    children: [
-                      Icon(
-                        Icons.close,
-                        color: Color(0xFFD71616),
-                        size: 36,
-                      ), // Ícone de check
-                      SizedBox(width: 10), // Espaço entre o ícone e o texto
-                      Text(
-                        'INCORRETO!',
-                        style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFFD71616)),
+                    )
+                  : const Align(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment
+                            .center, // Alinha horizontalmente ao centro
+                        children: [
+                          Icon(
+                            Icons.close,
+                            color: Color(0xFFD71616),
+                            size: 36,
+                          ), // Ícone de check
+                          SizedBox(width: 10), // Espaço entre o ícone e o texto
+                          Text(
+                            'INCORRETO!',
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFD71616)),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                )
+                    )
               : Align(
                   alignment: Alignment.center,
                   child: TextButton(
@@ -214,12 +228,12 @@ class _QuestionState extends State<Question> {
                       }
                     },
                     style: TextButton.styleFrom(
-                      backgroundColor: Color(0xFFFF6F00),
-                      primary: Colors.white,
-                      fixedSize: Size(250.0, 50.0),
-                      textStyle: TextStyle(fontSize: 20),
+                      foregroundColor: Colors.white,
+                      backgroundColor: const Color(0xFFFF6F00),
+                      fixedSize: const Size(250.0, 50.0),
+                      textStyle: const TextStyle(fontSize: 20),
                     ),
-                    child: Text('ENVIAR'),
+                    child: const Text('ENVIAR'),
                   ),
                 ),
         ],

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/generated/intl/messages_all.dart';
+import 'package:quiz_app/generated/l10n.dart';
 import './pages/question.dart';
 import './pages/home.dart';
 
-void main() {
-  runApp(MyApp());
+Future<void> main() async {
+  await initializeMessages('pt');
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,10 +21,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      localizationsDelegates: const [
+        S.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       initialRoute: '/', // Defina a rota inicial
       routes: {
-        '/': (context) => Home(),
-        '/question': (context) => Question(), // Rota para a tela secundária
+        '/': (context) => const Home(),
+        '/question': (context) =>
+            const Question(), // Rota para a tela secundária
       },
     );
   }

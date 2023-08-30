@@ -1,0 +1,5 @@
+{
+  "@@locale": "pt",
+  "welcomeMessage": "Bem-vindo ao Quiz-GPT",
+  "answers": "{number} respostas corretas!"
+}
