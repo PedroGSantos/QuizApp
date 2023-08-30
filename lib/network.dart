@@ -1,9 +1,7 @@
 import 'package:http/http.dart' as http;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 Future<QuestionGenerated> fetchQuestion() async {
   final response = await http.post(
@@ -11,15 +9,19 @@ Future<QuestionGenerated> fetchQuestion() async {
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization':
-          'Bearer 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',
+          'Bearer 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',
     },
     body: jsonEncode(<String, dynamic>{
       "model": "gpt-3.5-turbo",
       "messages": [
         {
+          "role": "system",
+          "content": "Você cria perguntas sobre o assunto informado",
+        },
+        {
           "role": "user",
           "content":
-              "Vc consegue gerar uma pergunta sobre video game, de multipla escolha e mandar em formato json? Os parametros devem se chamar 'pergunta', 'opcoes', 'resposta_correta'"
+              "Vc consegue gerar uma pergunta sobre video game, de multipla escolha e mandar em formato json? Siga esse padrão pra enviar resposta (nao essa mesma pergunta denovo): {pergunta: Qual foi o lancamento mais recente da franquia 'Call of Duty'?, opcoes: [Call of Duty: Modern Warfare, Call of Duty: Black Ops 4, Call of Duty: WWII, Call of Duty: Infinite Warfare], resposta_correta: Call of Duty: Modern Warfare}"
         }
       ]
     }),
@@ -28,19 +30,9 @@ Future<QuestionGenerated> fetchQuestion() async {
   if (response.statusCode == 200) {
     Map<String, dynamic> apiResponse = jsonDecode(response.body);
     String content = apiResponse['choices'][0]['message']['content'];
+    print(content);
 
-    // Encontrar e extrair a parte JSON da resposta
-    RegExp exp = RegExp(r'```json(.+)```', multiLine: true, dotAll: true);
-    Match? match = exp.firstMatch(content);
-
-    if (match != null) {
-      String jsonStr = match.group(1)!.trim();
-      Map<String, dynamic> questionJson = jsonDecode(jsonStr);
-
-      return QuestionGenerated.fromJson(questionJson);
-    } else {
-      throw Exception('Failed to parse question JSON');
-    }
+    return QuestionGenerated.fromJson(jsonDecode(content));
   } else {
     throw Exception('Failed to load question');
   }
