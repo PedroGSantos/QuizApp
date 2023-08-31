@@ -129,6 +129,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Send`
+  String get button {
+    return Intl.message(
+      'Send',
+      name: 'button',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

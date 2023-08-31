@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "answers": m0,
+        "button": MessageLookupByLibrary.simpleMessage("Enviar"),
         "descriptin_movie": MessageLookupByLibrary.simpleMessage(
             "Teste seus conhecimentos sobre os grandes sucessos do cinema!"),
         "description_games": MessageLookupByLibrary.simpleMessage(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quiz_app/generated/intl/messages_all.dart';
 import 'package:quiz_app/generated/l10n.dart';
 import './pages/question.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const Home(),
         '/question': (context) =>
-            const Question(), // Rota para a tela secundária
+            Question(questionType: 'filmes'), // Rota para a tela secundária
       },
     );
   }

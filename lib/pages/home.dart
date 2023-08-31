@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:quiz_app/network.dart';
 import 'package:quiz_app/pages/question.dart'; // Importe o pacote do carrossel
 import 'package:quiz_app/generated/l10n.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,6 +13,21 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int answerCount = 0; // Contagem inicial de respostas
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadAnswerCount(); // Carrega a contagem salva anteriormente
+  }
+
+  _loadAnswerCount() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      answerCount = prefs.getInt('answerCount') ?? 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     S localizations = S.of(context);
@@ -42,7 +58,7 @@ class _HomeState extends State<Home> {
                 const Icon(Icons.check, color: Colors.green), // Ícone de check
                 const SizedBox(width: 10), // Espaço entre o ícone e o texto
                 Text(
-                  localizations.answers(13),
+                  localizations.answers(answerCount),
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
@@ -62,16 +78,11 @@ class _HomeState extends State<Home> {
               // Item 1
               GestureDetector(
                 onTap: () async {
-                  try {
-                    QuestionGenerated question = await fetchQuestion();
-                    print("Pergunta: ${question.questionText}");
-                  } catch (e) {
-                    print("Erro ao buscar pergunta: $e");
-                  }
-
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Question()),
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Question(questionType: localizations.movies)),
                   );
                 },
                 child: Container(
@@ -114,7 +125,9 @@ class _HomeState extends State<Home> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Question()),
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Question(questionType: localizations.sports)),
                   );
                 },
                 child: Container(
@@ -157,7 +170,9 @@ class _HomeState extends State<Home> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Question()),
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Question(questionType: localizations.games)),
                   );
                 },
                 child: Container(

@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-Future<QuestionGenerated> fetchQuestion() async {
+Future<QuestionGenerated> fetchQuestion(String typeQuestion) async {
   final response = await http.post(
     Uri.parse('https://api.openai.com/v1/chat/completions'),
     headers: <String, String>{
@@ -21,7 +21,7 @@ Future<QuestionGenerated> fetchQuestion() async {
         {
           "role": "user",
           "content":
-              "Vc consegue gerar uma pergunta sobre video game, de multipla escolha e mandar em formato json? Siga esse padrão pra enviar resposta (nao essa mesma pergunta denovo): {pergunta: Qual foi o lancamento mais recente da franquia 'Call of Duty'?, opcoes: [Call of Duty: Modern Warfare, Call of Duty: Black Ops 4, Call of Duty: WWII, Call of Duty: Infinite Warfare], resposta_correta: Call of Duty: Modern Warfare}"
+              "Vc consegue gerar uma pergunta sobre ${typeQuestion}, de multipla escolha e mandar em formato json? Siga esse padrão pra enviar resposta (nao essa mesma pergunta denovo): {pergunta: Qual foi o lancamento mais recente da franquia 'Call of Duty'?, opcoes: [Call of Duty: Modern Warfare, Call of Duty: Black Ops 4, Call of Duty: WWII, Call of Duty: Infinite Warfare], resposta_correta: Call of Duty: Modern Warfare}"
         }
       ]
     }),

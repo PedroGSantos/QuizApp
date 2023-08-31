@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/network.dart';
+import 'package:quiz_app/generated/l10n.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Question extends StatefulWidget {
-  const Question({super.key});
+  final String questionType;
+
+  const Question({super.key, required this.questionType});
 
   @override
   State<Question> createState() => _QuestionState();
@@ -15,10 +19,21 @@ class _QuestionState extends State<Question> {
   bool _checkbox4 = false;
   bool _answerCorrect = false;
   bool _answerIncorrect = false;
+  int answerCount = 0;
 
   late Future<QuestionGenerated> _questionFuture;
   final Color _componentColor =
       const Color(0xFF4BD11B); // Defina a cor desejada
+
+  _incrementAnswerCount() async {
+    // Função para adicionar 1 resposta correta a mais
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      answerCount = prefs.getInt('answerCount') ?? 0;
+      answerCount++;
+      prefs.setInt('answerCount', answerCount);
+    });
+  }
 
   void _handleCheckbox1(bool? value) {
     setState(() {
@@ -67,11 +82,12 @@ class _QuestionState extends State<Question> {
   @override
   void initState() {
     super.initState();
-    _questionFuture = fetchQuestion();
+    _questionFuture = fetchQuestion(widget.questionType);
   }
 
   @override
   Widget build(BuildContext context) {
+    S localizations = S.of(context);
     return FutureBuilder<QuestionGenerated>(
       future: _questionFuture,
       builder: (context, snapshot) {
@@ -116,7 +132,7 @@ class _QuestionState extends State<Question> {
                           padding: EdgeInsets.only(
                               left: 20.0,
                               top: 16.0), // Adicione margem a todos os lados
-                          child: Text('Esportes',
+                          child: Text(widget.questionType,
                               style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
@@ -235,24 +251,28 @@ class _QuestionState extends State<Question> {
                     : Align(
                         alignment: Alignment.center,
                         child: TextButton(
-                          onPressed: () {
-                            if (_checkbox1) {
-                              setState(() {
-                                _answerCorrect = true;
-                                _checkbox1 = false;
-                                _checkbox2 = false;
-                                _checkbox3 = false;
-                                _checkbox4 = false;
-                              });
-                            } else {
-                              setState(() {
-                                _answerIncorrect = true;
-                                _checkbox1 = false;
-                                _checkbox2 = false;
-                                _checkbox3 = false;
-                                _checkbox4 = false;
-                              });
+                          onPressed: () async {
+                            void checkAnswer(int checkbox) {
+                              if (snapshot.data!.options[checkbox] ==
+                                  snapshot.data!.correctAnswer) {
+                                setState(() {
+                                  _answerCorrect = true;
+                                });
+                                _incrementAnswerCount();
+                              } else {
+                                setState(() {
+                                  _answerIncorrect = true;
+                                });
+                              }
                             }
+
+                            if (_checkbox1) checkAnswer(0);
+
+                            if (_checkbox2) checkAnswer(1);
+
+                            if (_checkbox3) checkAnswer(2);
+
+                            if (_checkbox4) checkAnswer(3);
                           },
                           style: TextButton.styleFrom(
                             foregroundColor: Colors.white,
@@ -260,7 +280,7 @@ class _QuestionState extends State<Question> {
                             fixedSize: const Size(250.0, 50.0),
                             textStyle: const TextStyle(fontSize: 20),
                           ),
-                          child: const Text('ENVIAR'),
+                          child: Text(localizations.button),
                         ),
                       ),
               ],
