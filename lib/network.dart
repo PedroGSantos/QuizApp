@@ -8,7 +8,7 @@ Future<QuestionGenerated> fetchQuestion(String typeQuestion) async {
     Uri.parse('https://api.openai.com/v1/chat/completions'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer ',
+      'Authorization': 'Bearer XXXXXXXXX',
     },
     body: jsonEncode(<String, dynamic>{
       "model": "gpt-3.5-turbo",
