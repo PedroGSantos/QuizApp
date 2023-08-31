@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz_app/main.dart';
 import 'package:quiz_app/network.dart';
 import 'package:quiz_app/generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,6 +30,7 @@ class _QuestionState extends State<Question> {
   _incrementAnswerCount() async {
     // Função para adicionar 1 resposta correta a mais
     SharedPreferences prefs = await SharedPreferences.getInstance();
+
     setState(() {
       answerCount = prefs.getInt('answerCount') ?? 0;
       answerCount++;
@@ -87,6 +90,7 @@ class _QuestionState extends State<Question> {
 
   @override
   Widget build(BuildContext context) {
+    final globalState = Provider.of<MyGlobalState>(context);
     S localizations = S.of(context);
     return FutureBuilder<QuestionGenerated>(
       future: _questionFuture,
@@ -259,6 +263,7 @@ class _QuestionState extends State<Question> {
                                   _answerCorrect = true;
                                 });
                                 _incrementAnswerCount();
+                                globalState.incrementCounter();
                               } else {
                                 setState(() {
                                   _answerIncorrect = true;

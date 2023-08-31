@@ -9,7 +9,7 @@ Future<QuestionGenerated> fetchQuestion(String typeQuestion) async {
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization':
-          'Bearer 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',
+          'Bearer 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',
     },
     body: jsonEncode(<String, dynamic>{
       "model": "gpt-3.5-turbo",
