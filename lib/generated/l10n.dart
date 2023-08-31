@@ -139,6 +139,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Correct!`
+  String get answerCorrect {
+    return Intl.message(
+      'Correct!',
+      name: 'answerCorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wrong!`
+  String get answerIncorrect {
+    return Intl.message(
+      'Wrong!',
+      name: 'answerIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

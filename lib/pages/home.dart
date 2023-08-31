@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/main.dart';
-import 'package:quiz_app/network.dart';
-import 'package:quiz_app/pages/question.dart'; // Importe o pacote do carrossel
+import 'package:quiz_app/pages/question.dart';
 import 'package:quiz_app/generated/l10n.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
@@ -209,7 +207,7 @@ class _HomeState extends State<Home> {
                 onPressed: () => _setLocale('pt'),
               ),
               ElevatedButton(
-                child: const Text('Inglês'),
+                child: const Text('English'),
                 onPressed: () => _setLocale('en'),
               ),
             ],

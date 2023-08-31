@@ -103,7 +103,6 @@ class _QuestionState extends State<Question> {
           return Text('Nenhum dado disponível');
         } else {
           QuestionGenerated question = snapshot.data!;
-          // Agora você pode usar `question.questionText`, `question.options`, e `question.correctAnswer`
           return Scaffold(
             appBar: AppBar(
               title: const Text(''),
@@ -204,7 +203,7 @@ class _QuestionState extends State<Question> {
                 const SizedBox(height: 100),
                 _answerCorrect || _answerIncorrect
                     ? _answerCorrect
-                        ? const Align(
+                        ? Align(
                             alignment: Alignment.center,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment
@@ -219,7 +218,7 @@ class _QuestionState extends State<Question> {
                                     width:
                                         10), // Espaço entre o ícone e o texto
                                 Text(
-                                  'CORRETO!',
+                                  localizations.answerCorrect,
                                   style: TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,
@@ -228,7 +227,7 @@ class _QuestionState extends State<Question> {
                               ],
                             ),
                           )
-                        : const Align(
+                        : Align(
                             alignment: Alignment.center,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment
@@ -243,7 +242,7 @@ class _QuestionState extends State<Question> {
                                     width:
                                         10), // Espaço entre o ícone e o texto
                                 Text(
-                                  'INCORRETO!',
+                                  localizations.answerIncorrect,
                                   style: TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,

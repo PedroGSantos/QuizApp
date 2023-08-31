@@ -8,4 +8,6 @@
   "description_sports": "Você é um fã de esportes? Prove respondendo a estas perguntas!",
   "description_games": "Será que você é um expert em jogos eletrônicos? Descubra aqui!",
   "button": "Enviar"
+  "answerCorrect": "Correto!",
+  "answerIncorrect": "Errado!"
 }

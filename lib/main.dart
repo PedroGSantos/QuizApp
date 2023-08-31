@@ -20,13 +20,11 @@ class MyGlobalState extends ChangeNotifier {
     _counter = prefs.getInt('answerCount') ?? 0;
     notifyListeners();
   }
-  
+
   void incrementCounter() {
     _counter++;
-    notifyListeners(); // Notificar todos os ouvintes sobre a mudança
+    notifyListeners();
   }
-
-  // Adicione outros estados e métodos conforme necessário
 }
 
 Future<void> main() async {

@@ -8,5 +8,7 @@
   "descriptin_movie": "Test your knowledge on blockbuster movies.",
   "description_sports": "Are you a sports fan? Prove it by answering these questions!",
   "description_games": "Think you're a gaming expert? Find out her!",
-  "button": "Send"
+  "button": "Send",
+  "answerCorrect": "Correct!",
+  "answerIncorrect": "Wrong!"
 }
